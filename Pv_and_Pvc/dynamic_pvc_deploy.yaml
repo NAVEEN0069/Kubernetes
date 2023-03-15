@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: test01
+  name: test01
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test01
+  template:
+    metadata:
+      labels:
+        app: test01
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        volumeMounts:
+        - name: myvol
+          mountPath: /naveen/test
+      volumes:
+      - name: myvol
+        persistentVolumeClaim:
+          claimName: myclaim 
